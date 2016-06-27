@@ -115,7 +115,11 @@ f=[
    "FkinklinAXplusBias",
    "Falex",
    "Fgetcol",
-   "Fgetrow"
+   "Fgetrow",
+   "Ftc",
+   "Fsecondorderneuron",
+   "Flogsoftmax",
+   "Flogsoftmax2"
    ]
 
 for fn in f
