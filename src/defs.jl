@@ -116,10 +116,8 @@ f=[
    "Falex",
    "Fgetcol",
    "Fgetrow",
-   "Ftc",
    "Fsecondorderneuron",
-   "Flogsoftmax",
-   "Flogsoftmax2"
+   "Flogsoftmax"
    ]
 
 for fn in f
