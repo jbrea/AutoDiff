@@ -6,8 +6,8 @@
 
 PlotResults=true
 
-useproc("GPU") 
-#useproc("CPU") # GPU about 4 times faster than CPU
+#useproc("GPU") 
+useproc("CPU") # GPU about 4 times faster than CPU
 
 using MAT
 
@@ -86,7 +86,7 @@ for iter=1:TrainingIts
     ADforward!(net)
     ADbackward!(net)
     push!(error,extract(net.value[net.FunctionNode])[1])
-    printover("iteration $iter: training loss = $(error[iter]) : meanSqLoss = $(784*to_host(net.value[meanSqloss])[1])")
+    printover("iteration $iter: training loss = $(error[iter]) : meanSqLoss = $(784*net.value[meanSqloss])")
     for par in ParsToUpdate
         #GradientDescentUpdate!(net.value[par],net.gradient[par],LearningRate)
         #GradientDescentMomentumUpdate!(net.value[par],net.gradient[par],avgrad[par],Momentum,LearningRate)
