@@ -5,7 +5,7 @@ function Flog_inplace(value,auxvalue,x)
 end
 
 function Dlog(derivativeIDX,f_c,faux_c,grad_c,grad_n,x)
-    axpy!(1.0,grad_c./f_c,grad_n)
+    axpy!(1.0,grad_c./x,grad_n)
 end
 
 

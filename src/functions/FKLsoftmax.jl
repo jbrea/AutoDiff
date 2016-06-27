@@ -18,7 +18,7 @@ function DKLsoftmax(derivativeIDX,f_c,faux_c,grad_c,grad_n,p::Array{Float64,2},x
     if derivativeIDX==1
         axpy!(1.0/length(x),grad_c.*(1+log(p)-x+repmat(faux_c,size(x,1),1)),grad_n) 
     elseif derivativeIDX==2
-        axpy!(1.0,grad_c.*(softmax(x)-p)./length(x),grad_n)
+        axpy!(1.0,grad_c.*(exp(x)./sum(exp(x),1)-p)./length(x),grad_n)
     end
 end
 
