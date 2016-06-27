@@ -10,6 +10,15 @@ function Dsoftmax(derivativeIDX,f_c,faux_c,grad_c,grad_n,x::Array{Float64,2})
     axpy!(1.0,f_c.*(grad_c-repmat(sum(f_c.*grad_c,1),size(f_c,1),1)),grad_n)
 end
 
+Fsoftmax(x::Array{Float64,1})=(exp(x)./sum(exp(x),1),[]) # TODO: better to subtract the max of x to make it numerically more stable
+
+function Fsoftmax_inplace(value,auxvalue,x::Array{Float64,1})
+    copy!(value,exp(x)./sum(exp(x),1)) # TODO: better to subtract the max of x to make it numerically more stable
+end
+          
+function Dsoftmax(derivativeIDX,f_c,faux_c,grad_c,grad_n,x::Array{Float64,1})
+    axpy!(1.0,f_c.*(grad_c-repmat(sum(f_c.*grad_c,1),size(f_c,1),1)),grad_n)
+end
 
 
 if PROC=="GPU"
