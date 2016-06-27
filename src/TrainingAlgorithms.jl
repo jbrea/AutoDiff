@@ -53,6 +53,26 @@ function GradientDescentMomentumInit(net)
 end
 export GradientDescentMomentumInit
 
+function AdamUpdate!(x, grad, avgrad, avgrad2; beta1 = .9, beta2 = .999,
+	LearningRate = .001, eps = 1.e-8)
+	scale!(beta1, avgrad)
+	axpy!(1. - beta1, grad, avgrad)
+	scale!(beta2, avgrad2)
+	axpy!(1. - beta2, grad.^2, avgrad2)
+	axpy!(-LearningRate, avgrad ./ (avgrad2.^.5 .+ eps), x)
+end
+export AdamUpdate!
+
+function AdamInit(net)
+	avgrad = Array(Any,length(net.node))
+	avgrad2 = Array(Any,length(net.node))
+    for par in Parameters(net)
+        avgrad[par]=cArray(net.gpu,zeros(size(net.value[par]))) # initial average gradient
+        avgrad2[par]=cArray(net.gpu,zeros(size(net.value[par]))) # initial average gradient
+    end
+    return avgrad, avgrad2
+end
+export AdamInit
 
 
 # Nesterov Accelerated Gradient Descent:
