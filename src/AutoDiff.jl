@@ -15,13 +15,13 @@ include("gpumacros.jl")
 
 include("initfile.jl")
 
-@cpu println("Using CPU")
+@cpu print_with_color(:blue, "Autodiff: Using CPU\n")
 #@gpu println("Compiling kernels...")
 #@gpu include("compile_kernels.jl")
-@gpu println("Using GPU")
+@gpu print_with_color(:blue, "Autodiff: Using GPU\n")
 
-@gpu (using CUDArt; println("using CUDArt"))
-@gpu (using CUBLAS; println("using CUBLAS"))
+@gpu (using CUDArt; print_with_color(:blue, "Autodiff: Using CUDArt\n"))
+@gpu (using CUBLAS; print_with_color(:blue, "Autodiff: Using CUBLAS\n"))
 
 @gpu (import CUDArt.to_host; to_host(A::Array)=A; export to_host;) # CHECKTHIS
 @cpu (to_host(A::Array)=A; export to_host;) # CHECKTHIS

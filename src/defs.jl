@@ -121,7 +121,7 @@ f=[
    ]
 
 for fn in f
-    include("functions/"*fn*".jl");  println(fn);
+    include("functions/"*fn*".jl"); # println(fn);
 end
 
 include("TrainingAlgorithms.jl")
