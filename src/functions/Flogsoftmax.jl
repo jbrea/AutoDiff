@@ -4,7 +4,7 @@ function Flogsoftmax(X::Array{Float64,2}, A::Array{Int64,1})
 		m = maximum(X[:,i])
 		res[1] += X[A[i], i] - log(sum(exp(X[:,i] - m))) - m
 	end
-	return (res/length(X), nothing)
+	return (res/size(X, 2), nothing)
 end
 
 function Flogsoftmax_inplace(res, aux, X::Array{Float64,2}, A::Array{Int64,1})
@@ -13,7 +13,7 @@ function Flogsoftmax_inplace(res, aux, X::Array{Float64,2}, A::Array{Int64,1})
 		m = maximum(X[:,i])
 		res[1] += X[A[i], i] - log(sum(exp(X[:,i] - m))) - m
 	end
-	res[1] *= 1./length(X)
+	res[1] *= 1./size(X, 2)
 end
 
 function Dlogsoftmax(derivativeIDX,f_c,faux_c,grad_c,grad_n,
@@ -27,7 +27,7 @@ function Dlogsoftmax(derivativeIDX,f_c,faux_c,grad_c,grad_n,
 				if a == A[i]
 					grad_n[a,i] += 1.
 				end
-				grad_n[a,i] *= 1./length(X)
+				grad_n[a,i] *= 1./size(X, 2)
 			end
 		end
 	#end
