@@ -1,3 +1,4 @@
+__precompile__(false)
 module AutoDiff
 # (c) David Barber, University College London 2015
 
