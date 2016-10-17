@@ -81,7 +81,7 @@ function cArray(A::Array)
     end
 end
 
-function cArray(proc::ASCIIString,A::Array)
+function cArray(proc::String,A::Array)
     if proc=="GPU"
         return CudaArray(A)
     else
@@ -90,7 +90,7 @@ function cArray(proc::ASCIIString,A::Array)
 end
 
 
-function cArray(proc::ASCIIString,eltype,A::Array)
+function cArray(proc::String,eltype,A::Array)
     if proc=="GPU"
         return CudaArray(eltype,A)
     else
@@ -122,7 +122,7 @@ end
 
 
 
-function cArray(gpu,sz::Tuple)
+function cArray(gpu::Bool,sz::Tuple)
     if gpu==true
         return CudaArray(Float64,sz)
     else

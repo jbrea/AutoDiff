@@ -2,8 +2,8 @@ void(x)=()
 
 
 import Base.convert
-#function convert(net::network,gpucpu::ASCIIString)
-function convert(net::network,gpucpu::ASCIIString,eltype=Float64)
+#function convert(net::network,gpucpu::String)
+function convert(net::network,gpucpu::String,eltype=Float64)
 
     #if (net.gpu & (gpucpu=="GPU")) | (!net.gpu & (gpucpu=="CPU"))
     #    return net
@@ -105,8 +105,6 @@ end # end of GPU stuff
 sigma(x)=1.0./(1.0+exp(-x))
 
 sigmoid(x)=sigma(x)  # TODO: replace sigma with sigmoid throughout
-
-sigma(x)=1./(1.+exp(-x))
 
 export sigma
 

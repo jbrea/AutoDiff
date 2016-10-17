@@ -110,7 +110,6 @@ f=[
    "Fdiagm", "FdiagAmultX", "FAmultdiagX",
    "FabsAXplusBias",
    "Felu",
-   "Fabs",
    "Fkinklin",
    "FkinklinAXplusBias",
    "Falex",
